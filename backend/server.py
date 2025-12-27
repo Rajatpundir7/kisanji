@@ -1099,21 +1099,21 @@ async def get_fertilizer_list():
 # VISION / DISEASE DETECTION ROUTES
 # =====================================
 
-# Initialize PlantDoctor (lazy loaded)
-_plant_doctor = None
+# Initialize Vision Engine (HuggingFace API - lightweight)
+_disease_engine = None
 
 def get_plant_doctor():
-    """Get or create PlantDoctor instance"""
-    global _plant_doctor
-    if _plant_doctor is None:
+    """Get or create Disease Engine instance"""
+    global _disease_engine
+    if _disease_engine is None:
         try:
-            from vision_engine import PlantDoctor
-            _plant_doctor = PlantDoctor()
-            logger.info("✅ PlantDoctor initialized successfully")
+            from vision_engine_hf import CropDiseaseEngine
+            _disease_engine = CropDiseaseEngine()
+            logger.info("✅ Disease Engine (HuggingFace) initialized successfully")
         except Exception as e:
-            logger.error(f"❌ Failed to initialize PlantDoctor: {e}")
+            logger.error(f"❌ Failed to initialize Disease Engine: {e}")
             return None
-    return _plant_doctor
+    return _disease_engine
 
 
 @api_router.get("/detection/models")
@@ -1189,17 +1189,16 @@ async def analyze_crop_image(
         }
     
     try:
-        # Read and process image
+        # Read image bytes
         contents = await file.read()
-        image = Image.open(io.BytesIO(contents)).convert("RGB")
         
-        # Run detection
-        result = doctor.predict(image, crop_type)
+        # Run detection using HuggingFace API
+        result = await doctor.analyze(contents, crop_type)
         
         # Save to database
         detection_record = {
             "crop_type": crop_type,
-            "disease": result.get("disease"),
+            "disease": result.get("disease_detected"),
             "confidence": result.get("confidence"),
             "severity": result.get("severity"),
             "timestamp": datetime.utcnow(),
