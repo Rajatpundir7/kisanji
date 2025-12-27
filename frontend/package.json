@@ -59,7 +59,8 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "CI=false craco build",
+    "build": "set CI=false && craco build",
+    "build:unix": "CI=false craco build",
     "test": "craco test"
   },
   "browserslist": {
