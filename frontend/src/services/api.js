@@ -1,5 +1,8 @@
 // API Service for connecting frontend to backend
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 
+  (window.location.hostname === 'localhost' 
+    ? 'http://localhost:8000/api' 
+    : 'https://kisanji-backend.onrender.com/api');
 
 class ApiService {
   constructor() {
