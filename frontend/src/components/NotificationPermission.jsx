@@ -43,6 +43,7 @@ export const NotificationProvider = ({ children }) => {
         startNotificationPolling();
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Request notification permission
