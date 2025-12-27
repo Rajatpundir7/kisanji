@@ -74,9 +74,9 @@ const MarketPrices = () => {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchMarketPrices();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleStateChange = (state) => {

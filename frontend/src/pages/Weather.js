@@ -72,6 +72,7 @@ const Weather = () => {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchWeather(coords.lat, coords.lon, location);
   }, []);
