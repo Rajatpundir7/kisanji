@@ -68,9 +68,13 @@ University: Graphic Era Hill University, Dehradun
 
 ### Database Schema (Backend) 
 •	users (Role, Language, Voice_Enabled)
+
 •	farmer_profile (Land Size, Soil Type, Irrigation)
+
 •	disease_results (Image ID, Confidence, Severity)
+
 •	market_prices (Mandi Name, Price/Quintal)
+
 •	schemes & scheme_notifications (Govt Subsidies)
 
 ### Disease Encyclopedia 
