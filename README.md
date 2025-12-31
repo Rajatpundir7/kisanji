@@ -26,7 +26,7 @@ Event: Hack The Winter. University: Graphic Era Hill University, Dehradun
 ## 🔄 Application Flowchart
 <h2 align="center">🔄 Application Flowchart</h2>
 <p align="center">
-  <img src="flowchart.jpej" alt="Application Flowchart" width="100%">
+  <img src="flowchart.jpeg" alt="Application Flowchart" width="100%">
 </p>
 
     
