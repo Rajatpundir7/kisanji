@@ -24,8 +24,8 @@ University: Graphic Era Hill University, Dehradun
   <img src="architecture.jpeg" alt="EchoHarvest System Architecture" width="100%">
 </p>
 
-## 🔄 Application Flowchart
-<h2 align="center">🔄 Application Flowchart</h2>
+##  Application Flowchart
+<h2 align="center"> Application Flowchart</h2>
 <p align="center">
   <img src="flow.jpeg" alt="Application Flowchart" width="100%">
 </p>
