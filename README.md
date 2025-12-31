@@ -1,4 +1,8 @@
-# 🌾 Kisan.JI - Smart Agriculture Platform
+# 🌾 Kisan.JI - Smart Agriculture Platform   (deployed on vercel live link ---->>> https://kisanji-frontend.vercel.app )
+Team Name: Kedari
+Event: Hack The Winter. University: Graphic Era Hill University, Dehradun
+
+(Kisan.JI) is an AI-powered, mobile-first "village nervous system" designed to empower smallholder farmers. Addressing the critical issues of crop loss and market exploitation, our solution acts as a bridge between advanced agricultural science and the rural farmer.Current Status: This is a fully functional prototype featuring a Python backend, HTML/CSS/JS frontend, and optimized ONNX-based deep learning models for fast, lightweight inference.
 
 <div align="center">
   <img src="frontend/public/images/1i.png" alt="Kisan.JI Logo" width="200"/>
@@ -13,6 +17,9 @@
 
 ---
 
+### Application Flow & Architecture ###
+
+
 ## ✨ Features
 
 ### 🤖 AI-Powered Assistant
@@ -21,9 +28,12 @@
 - **Text-to-Speech** - Audio responses in regional languages
 
 ### 🌱 Crop Management
-- **Disease Detection** - ONNX model-based plant disease identification
+- **Disease Detection** - ONNX model-based plant disease identification(plant_doctor.pt,corn_mobile_v2.onnx,sugarcane_mobile_v2.onnx,wheat_mobile_v2.onnx,rice_mobile_v2.onnx,cotton_mobile_v2.onnx)
+- Workflow: Image Input → ONNX Runtime Inference → Disease
 - **Pest Detection** - YOLOv8-powered pest identification
-- **Crop Recommendation** - AI-based crop suggestions based on soil & weather
+- **Crop Recommendation** - Powered by a trained Random Forest model (crop_recommender.pkl).
+•	Inputs: Nitrogen (N), Phosphorus (P), Potassium (K), pH Level, Rainfall, and Water Source (Tubewell/Borewell vs. Rain).
+•	Logic: Correlates soil nutrients with IMD weather data to suggest the highest-yield crop for the specific season.
 
 ### 📊 Market Intelligence
 - **Live Mandi Prices** - Real-time market prices from eNAM API
@@ -45,7 +55,34 @@
 - **Crop Insurance** - PMFBY scheme details
 - **Subsidies** - State-wise subsidy information
 
----
+### Database Schema (Backend) 
+•	users (Role, Language, Voice_Enabled)
+•	farmer_profile (Land Size, Soil Type, Irrigation)
+•	disease_results (Image ID, Confidence, Severity)
+•	market_prices (Mandi Name, Price/Quintal)
+•	schemes & scheme_notifications (Govt Subsidies)
+
+### Disease Encyclopedia 
+Beyond detection, the app serves as an educational library. We have categorized thousands of images into structured datasets for manual lookup:
+•	Categories: Fungicides, Bacterial Effects, Insecticides.
+•	Coverage: Apple, Gram, Sugarcane, Wheat, Rice, Cotton, and 20+ other major Indian crops.
+
+
+### Planned Improvements (Round 2)
+# 1. Ganga Alerts (Flood & Water Safety)
+•	Objective: To directly address climate uncertainty.
+•	Plan: Integration of real-time river level monitoring for farmers in the Ganges basin to provide early evacuation warnings.
+
+ # 2. Autonomous WhatsApp Agent (Business API)
+•	Objective: To remove the barrier of app installation.
+•	Plan: Porting the vision_engine and chatbot.py to a WhatsApp number. Farmers will send a photo to a contact, and our server will reply with the diagnosis and audio advice.
+
+ # 3. Blockchain Supply Chain
+•	Objective: To validate the "Company Buyer Listing" feature.
+•	Plan: A transparent ledger to record transactions between farmers and corporate buyers, ensuring fair payments and traceability.
+
+
+
 
 ## 🚀 Quick Start
 
@@ -106,7 +143,7 @@ npm start
 ### Frontend (Vercel)
 
 1. Create a new project on [Vercel](https://vercel.com)
-2. Connect your GitHub repository
+2. Connect your GitHub repository;
 3. Set the following:
    - **Root Directory**: `frontend`
    - **Build Command**: `npm run build`
