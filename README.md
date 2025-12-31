@@ -28,7 +28,7 @@ University: Graphic Era Hill University, Dehradun
 </p>
 
     
-##  Features
+##  Features---
 
 ###  AI-Powered Assistant
 - **Gemini AI Integration** - Smart chatbot for farming queries
