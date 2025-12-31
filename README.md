@@ -205,15 +205,4 @@ WEATHER_API_KEY=your_key
 REACT_APP_API_URL=http://localhost:8000/api
 ```
 
----
 
-##  Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-
-
-<div align="center">
-  <p>Made with  for Indian Farmers</p>
-  <p><strong>Kisan.JI</strong> - किसान जी</p>
-</div>
