@@ -1,8 +1,11 @@
 #  Kisan.JI - Smart Agriculture Platform   (deployed on vercel live link ---->>> https://kisanji-frontend.vercel.app )
+
+### Explainatory video link---->  https://youtu.be/ETIP463LaVk?si=M5DlUlwCZ6KcZCZz
+
 Team Name: Kedari
 Event: Hack The Winter.
 University: Graphic Era Hill University, Dehradun
-### Explainatory video link---->  https://youtu.be/ETIP463LaVk?si=M5DlUlwCZ6KcZCZz
+
 (Kisan.JI) is an AI-powered, mobile-first "village nervous system" designed to empower smallholder farmers. Addressing the critical issues of crop loss and market exploitation, our solution acts as a bridge between advanced agricultural science and the rural farmer.Current Status: This is a fully functional prototype featuring a Python backend, HTML/CSS/JS frontend, and optimized ONNX-based deep learning models for fast, lightweight inference.
 
   
