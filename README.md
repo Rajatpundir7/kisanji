@@ -39,7 +39,7 @@ University: Graphic Era Hill University, Dehradun
 - **Text-to-Speech** - Audio responses in regional languages
 
 ### 🌱 Crop Management
-- **Disease Detection** - ONNX model-based plant disease identification(plant_doctor.pt,corn_mobile_v2.onnx,sugarcane_mobile_v2.onnx,wheat_mobile_v2.onnx,rice_mobile_v2.onnx,cotton_mobile_v2.onnx)
+- **Disease Detection** - ONNX model-based plant disease identification(plant_doctor.pt, corn_mobile_v2.onnx, sugarcane_mobile_v2.onnx,  wheat_mobile_v2.onnx, rice_mobile_v2.onnx, cotton_mobile_v2.onnx)
 - Workflow: Image Input → ONNX Runtime Inference → Disease
 - **Pest Detection** - YOLOv8-powered pest identification
 - **Crop Recommendation** - Powered by a trained Random Forest model (crop_recommender.pkl).
