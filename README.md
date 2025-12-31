@@ -1,4 +1,4 @@
-#  Kisan.JI - Smart Agriculture Platform   (deployed on vercel live link ---->>> https://kisanji-frontend.vercel.app )
+# Kisan.JI - Smart Agriculture Platform   (deployed on vercel live link ---->>> https://kisanji-frontend.vercel.app )
 Team Name: Kedari
 Event: Hack The Winter.
 University: Graphic Era Hill University, Dehradun
@@ -10,31 +10,35 @@ University: Graphic Era Hill University, Dehradun
   
   **AI-Powered Agricultural Assistant for Indian Farmers**
   
->
+  [![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react)](https://reactjs.org/)
+  [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
+  [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb)](https://www.mongodb.com/)
+  [![Google Gemini](https://img.shields.io/badge/Google-Gemini_AI-4285F4?logo=google)](https://ai.google.dev/)
+</div>
 
 ---
 
 ### Application Flow & Architecture ###
-##  System Architecture
+## System Architecture
 <p align="center">
   <img src="architecture.jpeg" alt="EchoHarvest System Architecture" width="100%">
 </p>
 
-##  Application Flowchart
-<h2 align="center"> Application Flowchart</h2>
+## Application Flowchart
+<h2 align="center" Application Flowchart</h2>
 <p align="center">
   <img src="flow.jpeg" alt="Application Flowchart" width="100%">
 </p>
 
     
-##  Features
+## Features
 
-###  AI-Powered Assistant
+### AI-Powered Assistant
 - **Gemini AI Integration** - Smart chatbot for farming queries
 - **Voice Assistant** - Multilingual voice support (Hindi, Marathi, Tamil, Telugu, etc.)
 - **Text-to-Speech** - Audio responses in regional languages
 
-###  Crop Management
+### Crop Management
 - **Disease Detection** - ONNX model-based plant disease identification(plant_doctor.pt, corn_mobile_v2.onnx, sugarcane_mobile_v2.onnx,  wheat_mobile_v2.onnx, rice_mobile_v2.onnx, cotton_mobile_v2.onnx)
 - Workflow: Image Input → ONNX Runtime Inference → Disease
 - **Pest Detection** - YOLOv8-powered pest identification
@@ -64,20 +68,14 @@ University: Graphic Era Hill University, Dehradun
 
 ### Database Schema (Backend) 
 •	users (Role, Language, Voice_Enabled)
-
 •	farmer_profile (Land Size, Soil Type, Irrigation)
-
 •	disease_results (Image ID, Confidence, Severity)
-
 •	market_prices (Mandi Name, Price/Quintal)
-
 •	schemes & scheme_notifications (Govt Subsidies)
 
 ### Disease Encyclopedia 
 Beyond detection, the app serves as an educational library. We have categorized thousands of images into structured datasets for manual lookup:
-
 •	Categories: Fungicides, Bacterial Effects, Insecticides.
-
 •	Coverage: Apple, Gram, Sugarcane, Wheat, Rice, Cotton, and 20+ other major Indian crops.
 
 
@@ -167,7 +165,7 @@ npm start
 
 ---
 
-##  Project Structure
+## Project Structure
 
 ```
 kisanji/
@@ -206,5 +204,14 @@ WEATHER_API_KEY=your_key
 ```env
 REACT_APP_API_URL=http://localhost:8000/api
 ```
+
+---
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
 
 
