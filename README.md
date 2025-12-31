@@ -80,6 +80,7 @@ University: Graphic Era Hill University, Dehradun
 ### Disease Encyclopedia 
 Beyond detection, the app serves as an educational library. We have categorized thousands of images into structured datasets for manual lookup:
 •	Categories: Fungicides, Bacterial Effects, Insecticides.
+
 •	Coverage: Apple, Gram, Sugarcane, Wheat, Rice, Cotton, and 20+ other major Indian crops.
 
 
