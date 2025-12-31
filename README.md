@@ -5,13 +5,10 @@ University: Graphic Era Hill University, Dehradun
 
 (Kisan.JI) is an AI-powered, mobile-first "village nervous system" designed to empower smallholder farmers. Addressing the critical issues of crop loss and market exploitation, our solution acts as a bridge between advanced agricultural science and the rural farmer.Current Status: This is a fully functional prototype featuring a Python backend, HTML/CSS/JS frontend, and optimized ONNX-based deep learning models for fast, lightweight inference.
 
-<div align="center">
-  <img src="frontend/public/images/1i.png" alt="Kisan.JI Logo" width="200"/>
   
   **AI-Powered Agricultural Assistant for Indian Farmers**
   
-  
-</div>
+
 
 ---
 
