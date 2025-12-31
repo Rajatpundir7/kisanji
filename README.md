@@ -78,16 +78,16 @@ Beyond detection, the app serves as an educational library. We have categorized 
 •	Coverage: Apple, Gram, Sugarcane, Wheat, Rice, Cotton, and 20+ other major Indian crops.
 
 
-### Planned Improvements (Round 2)
-# 1. Ganga Alerts (Flood & Water Safety)
+## Planned Improvements (Round 2)
+### 1. Ganga Alerts (Flood & Water Safety)
 •	Objective: To directly address climate uncertainty.
 •	Plan: Integration of real-time river level monitoring for farmers in the Ganges basin to provide early evacuation warnings.
 
- # 2. Autonomous WhatsApp Agent (Business API)
+ #### 2. Autonomous WhatsApp Agent (Business API)
 •	Objective: To remove the barrier of app installation.
 •	Plan: Porting the vision_engine and chatbot.py to a WhatsApp number. Farmers will send a photo to a contact, and our server will reply with the diagnosis and audio advice.
 
- # 3. Blockchain Supply Chain
+ ### 3. Blockchain Supply Chain
 •	Objective: To validate the "Company Buyer Listing" feature.
 •	Plan: A transparent ledger to record transactions between farmers and corporate buyers, ensuring fair payments and traceability.
 
