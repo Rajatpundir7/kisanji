@@ -25,62 +25,61 @@ Event: Hack The Winter. University: Graphic Era Hill University, Dehradun
 
 ## 🔄 Application Flowchart
 
-```mermaid
 graph TD
     %% =======================
     %% 1. ENTRY & AUTH LAYER
     %% =======================
-    Start((Start App)) --> FE[<b>Frontend: React.js</b><br/>(Vercel Deployed)]
-    FE --> Auth{<b>User Login</b><br/>MongoDB Atlas}
-    Auth -->|Success| Dash[<b>🏠 Main Dashboard</b><br/>User: Farmer]
+    Start((Start App)) --> FE["<b>Frontend: React.js</b><br/>(Vercel Deployed)"]
+    FE --> Auth{"<b>User Login</b><br/>MongoDB Atlas"}
+    Auth -->|Success| Dash["<b>🏠 Main Dashboard</b><br/>User: Farmer"]
 
     %% =======================
     %% 2. BACKGROUND SERVICES
     %% =======================
-    Dash -.->|Auto-Fetch| Weather[<b>Weather Widget</b><br/>OpenWeatherMap API]
-    Dash -.->|Background| GNN[<b>GNN Network</b><br/>Farmer Alert Propagation]
-    Dash -.->|Future Round 2| Ganga[<b>🌊 Ganga Alerts</b><br/>River Level Monitoring]:::future
+    Dash -.->|Auto-Fetch| Weather["<b>Weather Widget</b><br/>OpenWeatherMap API"]
+    Dash -.->|Background| GNN["<b>GNN Network</b><br/>Farmer Alert Propagation"]
+    Dash -.->|Future Round 2| Ganga["<b>🌊 Ganga Alerts</b><br/>River Level Monitoring"]:::future
 
     %% =======================
     %% 3. CORE AI MODULES (FastAPI)
     %% =======================
     
     %% --- Module A: Crop Recommendation ---
-    Dash --> FeatureCrop(<b>🌱 Crop Recommendation</b>)
-    FeatureCrop --> SoilIn[/Input: N-P-K, pH, Water/]
-    SoilIn --> RF_Model[<b>Random Forest Model</b><br/>(crop_recommender.pkl)]:::ai
-    RF_Model --> RecOut[> Best Crop Suggestion]
+    Dash --> FeatureCrop("<b>🌱 Crop Recommendation</b>")
+    FeatureCrop --> SoilIn[/"Input: N-P-K, pH, Water"/]
+    SoilIn --> RF_Model["<b>Random Forest Model</b><br/>(crop_recommender.pkl)"]:::ai
+    RF_Model --> RecOut["> Best Crop Suggestion"]
 
     %% --- Module B: Pest Detection ---
-    Dash --> FeaturePest(<b>🔍 Pest & Disease Detection</b>)
-    FeaturePest --> Upload[/Upload Image/]
-    Upload --> ONNX[<b>Vision Engine</b><br/>6x ONNX Models + YOLOv8]:::ai
-    ONNX -->|Inference| Diagnosis[Result: Disease Name]
-    Diagnosis --> Calc[<b>Pesticide Calculator</b><br/>Dosage & Spray Schedule]
-    Calc --> Advice[> Cure & Advice]
+    Dash --> FeaturePest("<b>🔍 Pest & Disease Detection</b>")
+    FeaturePest --> Upload[/"Upload Image"/]
+    Upload --> ONNX["<b>Vision Engine</b><br/>6x ONNX Models + YOLOv8"]:::ai
+    ONNX -->|Inference| Diagnosis["Result: Disease Name"]
+    Diagnosis --> Calc["<b>Pesticide Calculator</b><br/>Dosage & Spray Schedule"]
+    Calc --> Advice["> Cure & Advice"]
 
     %% --- Module C: Kisan Assistant ---
-    Dash --> FeatureBot(<b>🤖 AI Assistant</b>)
-    FeatureBot --> VoiceIn[/Voice Input/]
-    VoiceIn --> Whisper[<b>Voice Assistant</b><br/>Multilingual Support]:::ai
-    Whisper --> Gemini[<b>Gemini AI Integration</b><br/>Farming Queries]:::ai
-    Gemini --> TTS[<b>Text-to-Speech</b><br/>Regional Audio Output]
+    Dash --> FeatureBot("<b>🤖 AI Assistant</b>")
+    FeatureBot --> VoiceIn[/"Voice Input"/]
+    VoiceIn --> Whisper["<b>Voice Assistant</b><br/>Multilingual Support"]:::ai
+    Whisper --> Gemini["<b>Gemini AI Integration</b><br/>Farming Queries"]:::ai
+    Gemini --> TTS["<b>Text-to-Speech</b><br/>Regional Audio Output"]
 
     %% =======================
     %% 4. MARKET & TOOLS
     %% =======================
     
     %% --- Market ---
-    Dash --> FeatureMarket(<b>📊 Market Intelligence</b>)
-    FeatureMarket --> Mandi[<b>eNAM API</b><br/>Live Mandi Prices]:::ext
-    FeatureMarket -.->|Future Round 2| Block[<b>🔗 Blockchain</b><br/>Supply Chain Ledger]:::future
+    Dash --> FeatureMarket("<b>📊 Market Intelligence</b>")
+    FeatureMarket --> Mandi["<b>eNAM API</b><br/>Live Mandi Prices"]:::ext
+    FeatureMarket -.->|Future Round 2| Block["<b>🔗 Blockchain</b><br/>Supply Chain Ledger"]:::future
 
     %% --- Tools & Schemes ---
-    Dash --> FeatureTools(<b>💊 Farm Tools</b>)
-    FeatureTools --> Calcs[Fertilizer Calc / Spray Scheduler]
+    Dash --> FeatureTools("<b>💊 Farm Tools</b>")
+    FeatureTools --> Calcs["Fertilizer Calc / Spray Scheduler"]
     
-    Dash --> FeatureSchemes(<b>🏛️ Govt Schemes</b>)
-    FeatureSchemes --> PM[PM-KISAN / PMFBY Info]
+    Dash --> FeatureSchemes("<b>🏛️ Govt Schemes</b>")
+    FeatureSchemes --> PM["PM-KISAN / PMFBY Info"]
 
     %% =======================
     %% STYLING
@@ -94,7 +93,7 @@ graph TD
     class Weather,Mandi,PM ext;
     class Ganga,Block future;
     class Dash,FE main;
-
+    
 ## ✨ Features
 
 ### 🤖 AI-Powered Assistant
