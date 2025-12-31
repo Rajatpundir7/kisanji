@@ -1,4 +1,4 @@
-# Kisan.JI - Smart Agriculture Platform   (deployed on vercel live link ---->>> https://kisanji-frontend.vercel.app )
+#  Kisan.JI - Smart Agriculture Platform   (deployed on vercel live link ---->>> https://kisanji-frontend.vercel.app )
 Team Name: Kedari
 Event: Hack The Winter.
 University: Graphic Era Hill University, Dehradun
@@ -19,26 +19,26 @@ University: Graphic Era Hill University, Dehradun
 ---
 
 ### Application Flow & Architecture ###
-## System Architecture
+##  System Architecture
 <p align="center">
   <img src="architecture.jpeg" alt="EchoHarvest System Architecture" width="100%">
 </p>
 
-## Application Flowchart
-<h2 align="center" Application Flowchart</h2>
+##  Application Flowchart
+<h2 align="center"> Application Flowchart</h2>
 <p align="center">
-  <img src="flow.jpeg" alt="Application Flowchart" width="100%">
+  <img src="flowchart.jpeg" alt="Application Flowchart" width="100%">
 </p>
 
     
-## Features
+##  Features
 
-### AI-Powered Assistant
+###  AI-Powered Assistant
 - **Gemini AI Integration** - Smart chatbot for farming queries
 - **Voice Assistant** - Multilingual voice support (Hindi, Marathi, Tamil, Telugu, etc.)
 - **Text-to-Speech** - Audio responses in regional languages
 
-### Crop Management
+###  Crop Management
 - **Disease Detection** - ONNX model-based plant disease identification(plant_doctor.pt, corn_mobile_v2.onnx, sugarcane_mobile_v2.onnx,  wheat_mobile_v2.onnx, rice_mobile_v2.onnx, cotton_mobile_v2.onnx)
 - Workflow: Image Input → ONNX Runtime Inference → Disease
 - **Pest Detection** - YOLOv8-powered pest identification
@@ -46,22 +46,22 @@ University: Graphic Era Hill University, Dehradun
 •	Inputs: Nitrogen (N), Phosphorus (P), Potassium (K), pH Level, Rainfall, and Water Source (Tubewell/Borewell vs. Rain).
 •	Logic: Correlates soil nutrients with IMD weather data to suggest the highest-yield crop for the specific season.
 
-### Market Intelligence
+###  Market Intelligence
 - **Live Mandi Prices** - Real-time market prices from eNAM API
 - **Weather Forecasts** - OpenWeatherMap integration with farming alerts
 - **Price Trends** - Historical price analysis
 
-### Farm Tools
+###  Farm Tools
 - **Fertilizer Calculator** - NPK-based fertilizer recommendations
 - **Pesticide Calculator** - Safe dosage calculations
 - **Spray Scheduling** - Weather-aware spray timing
 
-### Smart Alerts
+###  Smart Alerts
 - **GNN-Based Network** - Graph Neural Network for farmer alert propagation
 - **Weather Alerts** - Frost, rain, and extreme weather warnings
 - **Disease Outbreak Alerts** - Community-wide disease notifications
 
-### Government Schemes
+###  Government Schemes
 - **PM-KISAN** - Direct benefit information
 - **Crop Insurance** - PMFBY scheme details
 - **Subsidies** - State-wise subsidy information
@@ -95,7 +95,7 @@ Beyond detection, the app serves as an educational library. We have categorized 
 
 
 
-## Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Node.js 18+ & npm
@@ -135,7 +135,7 @@ npm start
 
 ---
 
-## Deployment
+##  Deployment
 
 ### Backend (Render)
 
@@ -165,7 +165,7 @@ npm start
 
 ---
 
-## Project Structure
+##  Project Structure
 
 ```
 kisanji/
@@ -190,7 +190,7 @@ kisanji/
 
 ---
 
-## Environment Variables
+##  Environment Variables
 
 ### Backend (.env)
 ```env
@@ -207,11 +207,13 @@ REACT_APP_API_URL=http://localhost:8000/api
 
 ---
 
-## Contributing
+##  Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
----
 
 
-
+<div align="center">
+  <p>Made with  for Indian Farmers</p>
+  <p><strong>Kisan.JI</strong> - किसान जी</p>
+</div>
