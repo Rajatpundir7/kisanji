@@ -20,6 +20,9 @@ from datetime import datetime, timezone
 import certifi
 import httpx
 import shutil
+import smtplib
+from email.mime.text import MIMEText
+import random
 
 # Add backend directory to path for local imports
 ROOT_DIR = Path(__file__).parent
@@ -88,6 +91,16 @@ class UserCreate(BaseModel):
 class UserLogin(BaseModel):
     phone: str
     password: Optional[str] = None
+
+class OTPRequest(BaseModel):
+    email: str
+
+class OTPVerify(BaseModel):
+    email: str
+    otp: str
+
+# In-memory store for OTPs
+otp_store = {}
 
 class UserResponse(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -245,6 +258,45 @@ async def login_user(login_data: UserLogin):
         "voice_enabled": user.get("voice_enabled", True),
         "message": "Login successful"
     }
+
+@api_router.post("/auth/send-otp")
+async def send_otp(request: OTPRequest):
+    email = request.email
+    otp = str(random.randint(100000, 999999))
+    otp_store[email] = otp
+
+    gmail_user = os.environ.get("GMAIL_USER")
+    gmail_pass = os.environ.get("GMAIL_PASS")
+
+    if not gmail_user or not gmail_pass:
+        raise HTTPException(status_code=500, detail="Gmail credentials not configured")
+
+    msg = MIMEText(f"Your OTP is {otp}")
+    msg['Subject'] = 'Your OTP Code'
+    msg['From'] = gmail_user
+    msg['To'] = email
+
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(gmail_user, gmail_pass)
+        server.send_message(msg)
+        server.quit()
+        return {"message": "OTP sent"}
+    except Exception as e:
+        import logging
+        logging.error(f"Error sending OTP: {e}")
+        raise HTTPException(status_code=500, detail="Failed to send OTP email")
+
+@api_router.post("/auth/verify-otp")
+async def verify_otp(request: OTPVerify):
+    email = request.email
+    otp = request.otp
+
+    if email in otp_store and otp_store[email] == otp:
+        return {"message": "Login successful"}
+    else:
+        return {"message": "Invalid OTP"}
 
 @api_router.get("/users")
 async def get_users():
