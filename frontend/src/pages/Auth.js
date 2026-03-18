@@ -11,6 +11,8 @@ import { Sprout, Phone, User, Lock, Mail, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 import apiService from '@/services/api';
+import { useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 const Auth = () => {
   const [phoneLogin, setPhoneLogin] = useState({ phone: '' });
@@ -111,11 +113,49 @@ const Auth = () => {
     }
   };
 
-  const handleGoogleLogin = () => {
-    // Simulate Google login
-    login({ name: 'Google User', email: 'user@gmail.com', village: 'Demo Village' });
-    toast.success('Google login successful!');
-    navigate('/');
+  const loginWithGoogle = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      setLoading(true);
+      try {
+        const res = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+          headers: { Authorization: `Bearer ${tokenResponse.access_token}` }
+        });
+        const profile = res.data;
+        
+        try {
+          const response = await apiService.request('/auth/google', {
+            method: 'POST',
+            body: JSON.stringify({ email: profile.email, name: profile.name, picture: profile.picture })
+          });
+          login({ 
+            id: response?.id || profile.sub,
+            name: profile.name, 
+            email: profile.email, 
+            village: 'Not Set',
+            role: response?.role || 'farmer'
+          });
+        } catch (backendErr) {
+          // Fallback if backend route isn't ready
+          login({ name: profile.name, email: profile.email, village: 'Not Set', picture: profile.picture });
+        }
+        
+        toast.success(`Welcome, ${profile.name}!`);
+        navigate('/');
+      } catch (err) {
+        console.error(err);
+        toast.error('Failed to fetch Google profile');
+      } finally {
+        setLoading(false);
+      }
+    },
+    onError: () => {
+      toast.error('Google login failed!');
+    }
+  });
+
+  const handleGoogleLogin = (e) => {
+    e.preventDefault();
+    loginWithGoogle();
   };
 
   return (

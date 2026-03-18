@@ -99,6 +99,11 @@ class OTPVerify(BaseModel):
     email: str
     otp: str
 
+class GoogleLoginRequest(BaseModel):
+    email: str
+    name: str
+    picture: Optional[str] = None
+
 # In-memory store for OTPs
 otp_store = {}
 
@@ -297,6 +302,38 @@ async def verify_otp(request: OTPVerify):
         return {"message": "Login successful"}
     else:
         return {"message": "Invalid OTP"}
+
+@api_router.post("/auth/google")
+async def google_login(data: GoogleLoginRequest):
+    user = await db.users.find_one({"email": data.email})
+    if not user:
+        # Auto-register
+        new_user = {
+            "name": data.name,
+            "email": data.email,
+            "phone": "GoogleUser",
+            "role": "farmer",
+            "preferred_language": "en",
+            "voice_enabled": True,
+            "created_at": datetime.now(timezone.utc)
+        }
+        result = await db.users.insert_one(new_user)
+        user_id = str(result.inserted_id)
+        return {
+            "id": user_id,
+            "name": data.name,
+            "email": data.email,
+            "role": "farmer",
+            "message": "Google Registration successful"
+        }
+    
+    return {
+        "id": str(user["_id"]),
+        "name": user.get("name", data.name),
+        "email": data.email,
+        "role": user.get("role", "farmer"),
+        "message": "Google Login successful"
+    }
 
 @api_router.get("/users")
 async def get_users():
