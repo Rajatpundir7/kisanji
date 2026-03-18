@@ -279,6 +279,398 @@ class CropDiseaseEngine:
     def __init__(self):
         self.hf_engine = HuggingFaceVisionEngine()
         self.pest_engine = PestInferenceEngine()
+        self.disease_info = {
+    "Bacterial Blight": {
+        "description": "Bacterial disease causing water-soaked lesions on leaves that turn brown with yellow halos.",
+        "severity": "High",
+        "treatments": [
+            {
+                "name": "Streptocycline",
+                "dosage": "100 ppm",
+                "timing": "At first symptoms"
+            },
+            {
+                "name": "Copper Oxychloride 50% WP",
+                "dosage": "2.5 kg/ha",
+                "timing": "Every 10-15 days"
+            }
+        ],
+        "preventions": [
+            "Use disease-free seeds",
+            "Treat seeds with Streptocycline 100 ppm",
+            "Avoid overhead irrigation",
+            "Remove and destroy infected plants"
+        ]
+    },
+    "Curl Virus": {
+        "description": "Viral disease transmitted by whiteflies causing leaf curling and stunted growth.",
+        "severity": "High",
+        "treatments": [
+            {
+                "name": "Imidacloprid 17.8% SL",
+                "dosage": "100 ml/ha",
+                "timing": "For whitefly control"
+            },
+            {
+                "name": "Thiamethoxam 25% WG",
+                "dosage": "100 g/ha",
+                "timing": "Every 15 days"
+            }
+        ],
+        "preventions": [
+            "Control whitefly population",
+            "Use virus-resistant varieties",
+            "Remove infected plants immediately",
+            "Avoid planting near infected fields"
+        ]
+    },
+    "Fusarium Wilt": {
+        "description": "Soil-borne fungal disease causing wilting, yellowing and vascular discoloration.",
+        "severity": "High",
+        "treatments": [
+            {
+                "name": "Carbendazim 50% WP",
+                "dosage": "2 g/L water",
+                "timing": "Soil drench at planting"
+            },
+            {
+                "name": "Trichoderma viride",
+                "dosage": "4 kg/ha",
+                "timing": "Before sowing"
+            }
+        ],
+        "preventions": [
+            "Use resistant varieties",
+            "Practice crop rotation",
+            "Soil solarization",
+            "Good drainage"
+        ]
+    },
+    "Blight": {
+        "description": "Bacterial leaf blight causing water-soaked lesions that turn yellow.",
+        "severity": "High",
+        "treatments": [
+            {
+                "name": "Streptocycline",
+                "dosage": "150 ppm",
+                "timing": "At first symptoms"
+            },
+            {
+                "name": "Copper Hydroxide",
+                "dosage": "2 kg/ha",
+                "timing": "Every 10 days"
+            }
+        ],
+        "preventions": [
+            "Use certified seeds",
+            "Balanced NPK fertilization",
+            "Good drainage",
+            "Avoid excess nitrogen"
+        ]
+    },
+    "Common Rust": {
+        "description": "Fungal disease producing reddish-brown pustules on leaves.",
+        "severity": "Moderate",
+        "treatments": [
+            {
+                "name": "Mancozeb 75% WP",
+                "dosage": "2.5 kg/ha",
+                "timing": "Early detection"
+            },
+            {
+                "name": "Hexaconazole 5% SC",
+                "dosage": "1 L/ha",
+                "timing": "Repeat after 15 days"
+            }
+        ],
+        "preventions": [
+            "Use rust-resistant varieties",
+            "Early planting",
+            "Adequate plant spacing"
+        ]
+    },
+    "Gray Leaf Spot": {
+        "description": "Fungal disease causing rectangular gray to tan lesions.",
+        "severity": "Moderate to High",
+        "treatments": [
+            {
+                "name": "Azoxystrobin 23% SC",
+                "dosage": "500 ml/ha",
+                "timing": "At first symptoms"
+            },
+            {
+                "name": "Propiconazole 25% EC",
+                "dosage": "500 ml/ha",
+                "timing": "Every 14 days"
+            }
+        ],
+        "preventions": [
+            "Resistant hybrids",
+            "Crop rotation (2+ years)",
+            "Tillage to bury residue"
+        ]
+    },
+    "Mosaic": {
+        "description": "Viral disease causing yellow-green mottling pattern on leaves.",
+        "severity": "Moderate",
+        "treatments": [
+            {
+                "name": "Imidacloprid 17.8% SL",
+                "dosage": "100 ml/ha",
+                "timing": "Vector control"
+            },
+            {
+                "name": "Dimethoate 30% EC",
+                "dosage": "1 L/ha",
+                "timing": "For aphid control"
+            }
+        ],
+        "preventions": [
+            "Use virus-free setts",
+            "Roguing of infected plants",
+            "Control aphid vectors",
+            "Resistant varieties"
+        ]
+    },
+    "Red Rot": {
+        "description": "Fungal disease causing red internal tissue with white spots.",
+        "severity": "High",
+        "treatments": [
+            {
+                "name": "Carbendazim 50% WP",
+                "dosage": "500 g/ha",
+                "timing": "Sett treatment"
+            },
+            {
+                "name": "Thiophanate Methyl",
+                "dosage": "500 g/ha",
+                "timing": "Before planting"
+            }
+        ],
+        "preventions": [
+            "Use disease-free setts",
+            "Hot water treatment (50\u00b0C for 2 hours)",
+            "Resistant varieties",
+            "Remove ratoon of infected fields"
+        ]
+    },
+    "Rust": {
+        "description": "Fungal disease producing orange-brown pustules on leaves.",
+        "severity": "Moderate",
+        "treatments": [
+            {
+                "name": "Mancozeb 75% WP",
+                "dosage": "2 kg/ha",
+                "timing": "At first symptoms"
+            },
+            {
+                "name": "Propiconazole 25% EC",
+                "dosage": "500 ml/ha",
+                "timing": "Every 15 days"
+            }
+        ],
+        "preventions": [
+            "Resistant varieties",
+            "Avoid excess nitrogen",
+            "Good field drainage"
+        ]
+    },
+    "Brown Rust": {
+        "description": "Fungal disease causing orange-brown pustules on leaves and stems.",
+        "severity": "Moderate to High",
+        "treatments": [
+            {
+                "name": "Propiconazole 25% EC",
+                "dosage": "500 ml/ha",
+                "timing": "At first symptoms"
+            },
+            {
+                "name": "Tebuconazole 25% EC",
+                "dosage": "500 ml/ha",
+                "timing": "Repeat after 15 days"
+            }
+        ],
+        "preventions": [
+            "Grow resistant varieties",
+            "Early sowing",
+            "Avoid late nitrogen application",
+            "Destroy volunteer wheat"
+        ]
+    },
+    "Yellow Rust": {
+        "description": "Fungal disease causing yellow stripes of pustules along leaf veins.",
+        "severity": "High",
+        "treatments": [
+            {
+                "name": "Propiconazole 25% EC",
+                "dosage": "500 ml/ha",
+                "timing": "Immediately on detection"
+            },
+            {
+                "name": "Tebuconazole 250 EC",
+                "dosage": "500 ml/ha",
+                "timing": "Every 10-14 days"
+            }
+        ],
+        "preventions": [
+            "Use resistant varieties",
+            "Early sowing",
+            "Balanced fertilization",
+            "Monitor regularly"
+        ]
+    },
+    "Blast": {
+        "description": "Fungal disease causing diamond-shaped lesions with gray centers.",
+        "severity": "High",
+        "treatments": [
+            {
+                "name": "Tricyclazole 75% WP",
+                "dosage": "300 g/ha",
+                "timing": "At first symptoms"
+            },
+            {
+                "name": "Isoprothiolane 40% EC",
+                "dosage": "750 ml/ha",
+                "timing": "Every 10-15 days"
+            }
+        ],
+        "preventions": [
+            "Resistant varieties",
+            "Avoid excess nitrogen",
+            "Maintain water level",
+            "Seed treatment with Carbendazim"
+        ]
+    },
+    "Tungro": {
+        "description": "Viral disease causing yellow-orange discoloration and stunting.",
+        "severity": "High",
+        "treatments": [
+            {
+                "name": "Carbofuran 3G",
+                "dosage": "25 kg/ha",
+                "timing": "Before transplanting"
+            },
+            {
+                "name": "Imidacloprid 17.8% SL",
+                "dosage": "100 ml/ha",
+                "timing": "Vector control"
+            }
+        ],
+        "preventions": [
+            "Resistant varieties",
+            "Synchronous planting",
+            "Control green leafhopper",
+            "Remove infected plants"
+        ]
+    },
+    "Healthy": {
+        "description": "No disease detected. The plant appears healthy.",
+        "severity": "None",
+        "treatments": [],
+        "preventions": [
+            "Continue regular monitoring",
+            "Maintain proper nutrition",
+            "Ensure adequate water management",
+            "Practice good field hygiene"
+        ]
+    },
+    "Cercospora Leaf Spot / Gray Leaf Spot": {
+        "description": "Cercospora Leaf Spot / Gray Leaf Spot",
+        "severity": "Medium",
+        "treatments": [
+            {
+                "name": "Recommended Action",
+                "dosage": "Follow instructions",
+                "timing": "Apply fungicides like Azoxystrobin or Propiconazole. Remove infected leaves."
+            }
+        ],
+        "preventions": [
+            "Rotate crops, use resistant varieties, avoid overhead irrigation."
+        ]
+    },
+    "Rust Disease": {
+        "description": "Rust Disease",
+        "severity": "High",
+        "treatments": [
+            {
+                "name": "Recommended Action",
+                "dosage": "Follow instructions",
+                "timing": "Apply sulfur-based fungicides or Triazole fungicides immediately."
+            }
+        ],
+        "preventions": [
+            "Plant resistant varieties, ensure good air circulation."
+        ]
+    },
+    "Blight Disease": {
+        "description": "Blight Disease",
+        "severity": "High",
+        "treatments": [
+            {
+                "name": "Recommended Action",
+                "dosage": "Follow instructions",
+                "timing": "Apply copper-based fungicides. Remove and destroy infected plants."
+            }
+        ],
+        "preventions": [
+            "Use certified disease-free seeds, practice crop rotation."
+        ]
+    },
+    "Blast Disease": {
+        "description": "Blast Disease",
+        "severity": "High",
+        "treatments": [
+            {
+                "name": "Recommended Action",
+                "dosage": "Follow instructions",
+                "timing": "Apply Tricyclazole or Isoprothiolane fungicides."
+            }
+        ],
+        "preventions": [
+            "Balanced nitrogen fertilization, flood field periodically."
+        ]
+    },
+    "Healthy Plant": {
+        "description": "Healthy Plant",
+        "severity": "None",
+        "treatments": [
+            {
+                "name": "Recommended Action",
+                "dosage": "Follow instructions",
+                "timing": "No treatment needed. Continue regular maintenance."
+            }
+        ],
+        "preventions": [
+            "Maintain good agricultural practices."
+        ]
+    },
+    "Unknown Condition": {
+        "description": "Unknown Condition",
+        "severity": "Unknown",
+        "treatments": [
+            {
+                "name": "Recommended Action",
+                "dosage": "Follow instructions",
+                "timing": "Consult an agricultural expert for proper diagnosis."
+            }
+        ],
+        "preventions": [
+            "Regular monitoring and preventive care recommended."
+        ]
+    }
+}
+    
+    def get_available_crops(self) -> List[Dict]:
+        return [
+            {"id": "cotton", "name": "Cotton", "available": True, "diseases": ["Bacterial Blight", "Curl Virus", "Fusarium Wilt", "Healthy"]},
+            {"id": "corn", "name": "Corn", "available": True, "diseases": ["Blight", "Common Rust", "Gray Leaf Spot", "Healthy"]},
+            {"id": "sugarcane", "name": "Sugarcane", "available": True, "diseases": ["Mosaic", "Red Rot", "Rust", "Healthy"]},
+            {"id": "wheat", "name": "Wheat", "available": True, "diseases": ["Brown Rust", "Healthy", "Yellow Rust"]},
+            {"id": "rice", "name": "Rice", "available": True, "diseases": ["Blast", "Blight", "Tungro"]},
+            {"id": "general", "name": "General Plant Scan", "available": True, "diseases": []},
+            {"id": "pest", "name": "Pest Detection 🐛", "available": True, "diseases": []}
+        ]
+
     
     async def analyze(self, image_data: bytes, crop_type: str = "general") -> Dict:
         """Main analysis entry point"""
