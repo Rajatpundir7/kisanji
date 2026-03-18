@@ -18,6 +18,7 @@ const Auth = () => {
   const [phoneLogin, setPhoneLogin] = useState({ phone: '' });
   const [userLogin, setUserLogin] = useState({ username: '', password: '' });
   const [register, setRegister] = useState({ name: '', phone: '', username: '', password: '', village: '' });
+  const [emailOtp, setEmailOtp] = useState({ email: '', otp: '', step: 1 });
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const { t, language, changeLanguage } = useLanguage();
@@ -110,6 +111,53 @@ const Auth = () => {
       }
     } else {
       toast.error('Please fill in all required fields');
+    }
+  };
+
+  const handleSendOtp = async (e) => {
+    e.preventDefault();
+    if (!emailOtp.email) {
+      toast.error('Please enter a valid email');
+      return;
+    }
+    setLoading(true);
+    try {
+      await apiService.request('/auth/send-otp', {
+        method: 'POST',
+        body: JSON.stringify({ email: emailOtp.email })
+      });
+      setEmailOtp({ ...emailOtp, step: 2 });
+      toast.success('OTP sent successfully!');
+    } catch (error) {
+      toast.error('Failed to send OTP');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleVerifyOtp = async (e) => {
+    e.preventDefault();
+    if (!emailOtp.otp) {
+      toast.error('Please enter the OTP');
+      return;
+    }
+    setLoading(true);
+    try {
+      await apiService.request('/auth/verify-otp', {
+        method: 'POST',
+        body: JSON.stringify({ email: emailOtp.email, otp: emailOtp.otp })
+      });
+      login({ 
+        name: emailOtp.email.split('@')[0], 
+        email: emailOtp.email, 
+        village: 'Demo Village' 
+      });
+      toast.success('Login successful!');
+      navigate('/');
+    } catch (error) {
+      toast.error('Invalid OTP');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -284,8 +332,9 @@ const Auth = () => {
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="phone" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 bg-white/5 border border-white/10">
+                <TabsList className="grid w-full grid-cols-4 bg-white/5 border border-white/10">
                   <TabsTrigger value="phone" className="data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-400">Phone</TabsTrigger>
+                  <TabsTrigger value="otp" className="data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-400">OTP</TabsTrigger>
                   <TabsTrigger value="login" className="data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-400">Login</TabsTrigger>
                   <TabsTrigger value="register" className="data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-400">Register</TabsTrigger>
                 </TabsList>
@@ -313,6 +362,55 @@ const Auth = () => {
                     Login with Phone
                   </Button>
                 </form>
+              </TabsContent>
+
+              {/* Email OTP Login */}
+              <TabsContent value="otp" className="space-y-4 mt-4">
+                {emailOtp.step === 1 ? (
+                  <form onSubmit={handleSendOtp} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="otp-email">Email Address</Label>
+                      <div className="relative">
+                        <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          id="otp-email"
+                          type="email"
+                          placeholder="farmer@gmail.com"
+                          className="pl-10"
+                          value={emailOtp.email}
+                          onChange={(e) => setEmailOtp({ ...emailOtp, email: e.target.value })}
+                        />
+                      </div>
+                    </div>
+                    <Button type="submit" className="w-full gradient-primary" disabled={loading}>
+                      {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                      Send OTP
+                    </Button>
+                  </form>
+                ) : (
+                  <form onSubmit={handleVerifyOtp} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="otp-code">Enter 6-Digit OTP</Label>
+                      <div className="relative">
+                        <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          id="otp-code"
+                          type="text"
+                          placeholder="123456"
+                          className="pl-10 tracking-widest font-mono"
+                          value={emailOtp.otp}
+                          onChange={(e) => setEmailOtp({ ...emailOtp, otp: e.target.value })}
+                          maxLength={6}
+                        />
+                      </div>
+                      <p className="text-xs text-gray-400 mt-2 text-center">OTP sent to {emailOtp.email}</p>
+                    </div>
+                    <Button type="submit" className="w-full gradient-primary" disabled={loading}>
+                      {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                      Verify OTP
+                    </Button>
+                  </form>
+                )}
               </TabsContent>
 
               {/* Username Login */}
