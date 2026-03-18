@@ -19,7 +19,22 @@ logger = logging.getLogger(__name__)
 
 # Add parent directory to path for model access
 PARENT_DIR = Path(__file__).parent.parent
-MODEL_PATH = PARENT_DIR / "crop_recommender.pkl"
+CURRENT_DIR = Path(__file__).parent
+
+# Check multiple locations for the model file
+_possible_model_paths = [
+    CURRENT_DIR / "crop_recommender.pkl",     # Docker: model copied to /app/
+    PARENT_DIR / "crop_recommender.pkl",       # Local dev: model in repo root
+    Path("/app/crop_recommender.pkl"),         # Docker absolute path
+]
+MODEL_PATH = None
+for _p in _possible_model_paths:
+    if _p.exists():
+        MODEL_PATH = _p
+        break
+if MODEL_PATH is None:
+    MODEL_PATH = PARENT_DIR / "crop_recommender.pkl"  # Fallback path
+
 
 class CropRecommendationEngine:
     """

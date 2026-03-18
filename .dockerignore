@@ -1,0 +1,24 @@
+# Ignore large/unnecessary files to speed up Docker builds
+.git
+node_modules
+frontend/node_modules
+frontend/.cache
+frontend/build
+__pycache__
+*.pyc
+.env
+.env.local
+*.jpg
+*.jpeg
+*.png
+arch.jpeg
+architecture.jpeg
+flow.jpeg
+flowchart.jpeg
+enhance_images/
+docs/
+tests/
+AgriGraph_Optimizer/
+*.md
+!README.md
+.gitignore
